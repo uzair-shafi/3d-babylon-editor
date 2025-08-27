@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BabylonCanvas } from './components/BabylonCanvas';
+import { useEditorControls } from './components/UIControls';
 
 function App() {
+  const handleExportScene = () => {
+    console.log("Exporting...");
+  };
+  const handleImportScene = (file: File) => {
+    console.log("Importing...");
+  };
+  const handleClearSelection = () => {
+    console.log("Clearing...");
+  };
+  const {
+    Color,
+    Material,
+    Model,
+    Texture,
+
+  } = useEditorControls(handleExportScene, handleImportScene, handleClearSelection);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BabylonCanvas
+      boxColor={Color}
+      materialName={Material}
+      selectedModel={Model}
+      textureName={Texture}
+    />
+
   );
 }
 
